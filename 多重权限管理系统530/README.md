@@ -49,7 +49,7 @@
 docker build -t permission-system-530 .
 
 # 启动容器
-docker run --rm -p 3000:80 -p 3001:8000 --name permission-system-530 permission-system-530
+docker run --rm -p 3000:80 -p 8000:8000 --name permission-system-530 permission-system-530
 ```
 
 ### 服务访问
@@ -57,7 +57,7 @@ docker run --rm -p 3000:80 -p 3001:8000 --name permission-system-530 permission-
 | 服务 | 地址 | 说明 |
 |------|------|------|
 | 前端 | http://localhost:3000 | Vue 3 + Nginx |
-| 后端 | http://localhost:3001 | Spring Boot API |
+| 后端 | http://localhost:8000 | Spring Boot API |
 
 ### 测试账号
 
@@ -104,7 +104,7 @@ docker run --rm -p 3000:80 -p 3001:8000 --name permission-system-530 permission-
 ```bash
 # 构建并启动
 docker build -t permission-system-530 .
-docker run --rm -p 3000:80 --name permission-system-530 permission-system-530
+docker run --rm -p 3000:80 -p 8000:8000 --name permission-system-530 permission-system-530
 ```
 
 ## 本地开发
