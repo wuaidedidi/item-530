@@ -36,7 +36,7 @@
 
 > [!IMPORTANT]
 > 生产部署前 **必须** 通过环境变量设置 `JWT_SECRET`，否则后端将拒绝启动。
-> 可在项目根目录创建 `.env` 文件供 Docker Compose 读取：
+> 可在项目根目录创建 `.env` 文件供容器启动时读取：
 > ```env
 > JWT_SECRET=YourSuperSecretKeyAtLeast32Characters!!
 > CORS_ALLOWED_ORIGINS=https://your-domain.com
@@ -49,7 +49,7 @@
 docker build -t permission-system-530 .
 
 # 启动容器
-docker run --rm -p 3000:80 --name permission-system-530 permission-system-530
+docker run --rm -p 3000:80 -p 3001:8000 --name permission-system-530 permission-system-530
 ```
 
 ### 服务访问
@@ -57,7 +57,7 @@ docker run --rm -p 3000:80 --name permission-system-530 permission-system-530
 | 服务 | 地址 | 说明 |
 |------|------|------|
 | 前端 | http://localhost:3000 | Vue 3 + Nginx |
-| 后端 | http://localhost:3000/api | Spring Boot API |
+| 后端 | http://localhost:3001 | Spring Boot API |
 
 ### 测试账号
 
@@ -96,16 +96,8 @@ docker run --rm -p 3000:80 --name permission-system-530 permission-system-530
 │   └── package.json
 ├── db/               # 数据库脚本
 │   └── init.sql      # 初始化脚本
-└── docker-compose.yml
+└── Dockerfile        # 单文件启动入口
 ```
-
-## Docker 配置
-
-| 容器名 | 服务 |
-|--------|------|
-| label-530-db | MySQL 数据库 |
-| label-530-backend | Spring Boot 后端 |
-| label-530-frontend | Vue 3 前端 |
 
 ## 常用命令
 
